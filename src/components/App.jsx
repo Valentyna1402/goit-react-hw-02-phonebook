@@ -37,14 +37,20 @@ export class App extends Component {
   };
 
   addContact = newContact => {
+    const isOnContacts = this.contacts.some(
+      this.state.contacts.some(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    );
+
+    if (isOnContacts) {
+      alert(`${newContact.name} already in phonebook!`);
+      return;
+    }
+
     const contact = { ...newContact, id: nanoid() };
+
     this.setState(prevState => {
-      if (
-        this.state.contacts.some(contact => contact.name === newContact.name)
-      ) {
-        alert(`${newContact.name} already in phonebook!`);
-        return;
-      }
       return {
         contacts: [...prevState.contacts, contact],
       };
