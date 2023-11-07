@@ -37,10 +37,9 @@ export class App extends Component {
   };
 
   addContact = newContact => {
-    const isOnContacts = this.contacts.some(
+    const isOnContacts = 
       this.state.contacts.some(
         contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-      )
     );
 
     if (isOnContacts) {
